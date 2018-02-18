@@ -38,6 +38,9 @@
             location = "group:Base.lproj"
             name = "Base.lproj">
             <FileRef
+               location = "group:../LaunchScreen.xib">
+            </FileRef>
+            <FileRef
                location = "group:Main.storyboard">
             </FileRef>
          </Group>
