@@ -37,20 +37,33 @@ class MainViewController: UIViewController {
     // MARK: - Refresh Control
     
     private func setupRefreshControl() {
+        // Refresh Control:
         let refreshControl =  UIRefreshControl()
+        refreshControl.translatesAutoresizingMaskIntoConstraints = false
+        let container = view.layoutMarginsGuide
+        refreshControl.topAnchor.constraint(equalTo: container.topAnchor, constant: 1.0).isActive = true
+        let width = refreshControl.bounds.size.width
+        refreshControl.leftAnchor.constraint(equalTo: container.leftAnchor, constant: 1.0).isActive = true
+        
+        
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Refresh Data")
         refreshControl.tintColor = .red
         refreshControl.backgroundColor = .white
+        
+        // StackView members:
         let hook = UIImage.init(named: "Hook")
         let hookImageView = UIImageView(image:hook)
         let fish = UIImage.init(named: "Fish")
         let fishImageView = UIImageView(image: fish)
         
+        // StackView:
         let stackView = UIStackView(arrangedSubviews: [hookImageView, fishImageView])
         stackView.axis = .vertical
         stackView.spacing = 10.0
         refreshControl.addSubview(stackView)
         
+        // Positioning StackView within its container:
         stackView.translatesAutoresizingMaskIntoConstraints = false
         let container = refreshControl.layoutMarginsGuide
         stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: 1.0).isActive = true
