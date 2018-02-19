@@ -36,9 +36,13 @@
     [self displayBigImage];
 }
 
+// -----------------------------------------------------------------------------------------------------------------
+
 - (void)viewDidDisappear:(BOOL)animated {
     self.statusLabel.hidden = true;
 }
+
+// -----------------------------------------------------------------------------------------------------------------
 
 - (void)displayAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sorry, Not Available"

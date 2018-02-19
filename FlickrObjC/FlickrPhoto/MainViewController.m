@@ -47,10 +47,20 @@ NSString *searchText = @"Shark";
 
 
 - (void)setupRefreshControl {
+    // Refresh Control:
     self.refreshControl = [UIRefreshControl new];
+    self.collectionView.refreshControl = self.refreshControl;
+    
+    [_refreshControl setTranslatesAutoresizingMaskIntoConstraints:NO];
+    UILayoutGuide *refreshControlContainer = [_collectionView layoutMarginsGuide];
+    [_refreshControl.topAnchor constraintEqualToAnchor:refreshControlContainer.topAnchor constant: 1.0].active = YES;
+    [_refreshControl.leftAnchor constraintEqualToAnchor:refreshControlContainer.leftAnchor constant: 1.0].active = YES;
+    
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refresh Data"];
     self.refreshControl.tintColor = UIColor.redColor;
     self.refreshControl.backgroundColor = UIColor.whiteColor;
+    
+     // StackView members:
     UIImage *hook = [UIImage imageNamed:@"Hook"];
     UIImageView *hookImageView = [[UIImageView alloc] initWithImage:hook];
     UIImage *fish = [UIImage imageNamed:@"Fish"];
@@ -61,13 +71,15 @@ NSString *searchText = @"Shark";
     stackView.spacing = 10.0;
     [self.refreshControl addSubview:stackView];
     
+    // StackView:
     [stackView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    UILayoutGuide *container = [_refreshControl layoutMarginsGuide];
-    [stackView.topAnchor constraintEqualToAnchor:container.topAnchor].active = YES;
+    UILayoutGuide *stackViewContainer = [_refreshControl layoutMarginsGuide];
+    [stackView.topAnchor constraintEqualToAnchor:stackViewContainer.topAnchor].active = YES;
     CGFloat width = self.refreshControl.bounds.size.width;
-    [stackView.leftAnchor constraintEqualToAnchor:container.leftAnchor constant:width/2].active = YES;
+    [stackView.leftAnchor constraintEqualToAnchor:stackViewContainer.leftAnchor constant:width/2].active = YES;
+    
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    self.collectionView.refreshControl = self.refreshControl;
+    
 }
 
 - (void)handleRefresh:(UIRefreshControl *)sender {

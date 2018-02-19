@@ -39,12 +39,11 @@ class MainViewController: UIViewController {
     private func setupRefreshControl() {
         // Refresh Control:
         let refreshControl =  UIRefreshControl()
+        collectionView.refreshControl = refreshControl
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
-        let container = view.layoutMarginsGuide
-        refreshControl.topAnchor.constraint(equalTo: container.topAnchor, constant: 1.0).isActive = true
-        let width = refreshControl.bounds.size.width
-        refreshControl.leftAnchor.constraint(equalTo: container.leftAnchor, constant: 1.0).isActive = true
-        
+        let refreshControlContainer = view.layoutMarginsGuide
+        refreshControl.topAnchor.constraint(equalTo: refreshControlContainer.topAnchor, constant: 1.0).isActive = true
+        refreshControl.leftAnchor.constraint(equalTo: refreshControlContainer.leftAnchor, constant: 1.0).isActive = true
         
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Refresh Data")
@@ -65,12 +64,12 @@ class MainViewController: UIViewController {
         
         // Positioning StackView within its container:
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        let container = refreshControl.layoutMarginsGuide
-        stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: 1.0).isActive = true
+        let stackViewContainer = refreshControl.layoutMarginsGuide
+        stackView.topAnchor.constraint(equalTo: stackViewContainer.topAnchor, constant: 1.0).isActive = true
         let width = refreshControl.bounds.size.width
-        stackView.leftAnchor.constraint(equalTo: container.leftAnchor, constant: width/2.0).isActive = true
+        stackView.leftAnchor.constraint(equalTo: stackViewContainer.leftAnchor, constant: width/2.0).isActive = true
+        
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        collectionView.refreshControl = refreshControl
     }
     
     
