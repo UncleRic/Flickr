@@ -55,6 +55,7 @@ NSString *searchText = @"Shark";
     UILayoutGuide *refreshControlContainer = [_collectionView layoutMarginsGuide];
     [_refreshControl.topAnchor constraintEqualToAnchor:refreshControlContainer.topAnchor constant: 1.0].active = YES;
     [_refreshControl.leftAnchor constraintEqualToAnchor:refreshControlContainer.leftAnchor constant: 1.0].active = YES;
+    [_refreshControl.heightAnchor constraintEqualToConstant:300.0].active = YES;
     
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refresh Data"];
     self.refreshControl.tintColor = UIColor.redColor;
