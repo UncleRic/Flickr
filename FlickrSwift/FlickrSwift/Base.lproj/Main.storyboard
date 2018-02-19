@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="226-do-SOk">
-                                <rect key="frame" x="16" y="64" width="343" height="561"/>
+                                <rect key="frame" x="16" y="64" width="343" height="559"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vb2-wq-vxx">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -67,7 +67,7 @@
                                 </connections>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ke8-d6-nqO">
-                                <rect key="frame" x="-1" y="623" width="377" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Exit" id="84Y-Ju-rx3">
                                         <connections>
@@ -79,13 +79,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.79795017739999996" green="0.93767279579999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ke8-d6-nqO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="6S8-E8-3Kx"/>
                             <constraint firstItem="UPg-z5-7Rn" firstAttribute="top" secondItem="ke8-d6-nqO" secondAttribute="bottom" id="CiI-vN-x3e"/>
                             <constraint firstItem="226-do-SOk" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="HKj-bl-DHh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="226-do-SOk" secondAttribute="trailing" id="How-5i-pwm"/>
                             <constraint firstItem="226-do-SOk" firstAttribute="top" secondItem="F5g-Hb-38o" secondAttribute="bottom" id="fMd-Ef-YyW"/>
-                            <constraint firstItem="ke8-d6-nqO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-17" id="ifb-N3-8bD"/>
-                            <constraint firstItem="226-do-SOk" firstAttribute="centerX" secondItem="ke8-d6-nqO" secondAttribute="centerX" id="lOT-GP-9L5"/>
-                            <constraint firstItem="ke8-d6-nqO" firstAttribute="top" secondItem="226-do-SOk" secondAttribute="bottom" constant="-2" id="s3h-eD-JI2"/>
+                            <constraint firstItem="ke8-d6-nqO" firstAttribute="top" secondItem="226-do-SOk" secondAttribute="bottom" id="s3h-eD-JI2"/>
+                            <constraint firstAttribute="trailing" secondItem="ke8-d6-nqO" secondAttribute="trailing" id="yPl-uC-qLY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cIH-xX-U8r"/>
