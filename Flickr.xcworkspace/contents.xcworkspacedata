@@ -266,16 +266,25 @@
          location = "group:FlickrSwift"
          name = "FlickrSwift">
          <FileRef
-            location = "group:DetailViewController.swift">
+            location = "group:AppDelegate.swift">
          </FileRef>
          <FileRef
             location = "group:MainViewController.swift">
          </FileRef>
          <FileRef
+            location = "group:DetailViewController.swift">
+         </FileRef>
+         <FileRef
             location = "group:FlickrData.swift">
          </FileRef>
          <FileRef
-            location = "group:SimpleFlickrAPI.swift">
+            location = "group:/Users/Ric/Projects/Flickr/FlickrSwift/FlickrSwift/FlickrAPI.swift">
+         </FileRef>
+         <FileRef
+            location = "group:PhotoStorage.swift">
+         </FileRef>
+         <FileRef
+            location = "group:FlickrEnvironment.swift">
          </FileRef>
          <Group
             location = "group:Base.lproj"
@@ -431,18 +440,6 @@
                </FileRef>
             </Group>
          </Group>
-         <FileRef
-            location = "group:FlickrEnvironment.swift">
-         </FileRef>
-         <FileRef
-            location = "group:AppDelegate.swift">
-         </FileRef>
-         <FileRef
-            location = "group:MasterViewController.swift">
-         </FileRef>
-         <FileRef
-            location = "group:PhotoStorage.swift">
-         </FileRef>
          <FileRef
             location = "group:Info.plist">
          </FileRef>

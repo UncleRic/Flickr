@@ -6,7 +6,7 @@
 // -----------------------------------------------------------------------------------------------------------------------
 
 #import "MainViewController.h"
-#import "SimpleFlickrAPI.h"
+#import "FlickrAPI.h"
 #import "ImageDownloader.h"
 #import "DetailViewController.h"
 #import "PhotoCollectionView.h"
@@ -80,7 +80,7 @@ NSString *searchText = @"Shark";
 
 - (void)fetchFlickrPhotoWithSearchString:(NSString *)searchString tag: (NSString *)tags {
     
-    SimpleFlickrAPI *flickr = [SimpleFlickrAPI new];
+    FlickrAPI *flickr = [FlickrAPI new];
     
     [[[NSURLSession sharedSession] dataTaskWithURL:[flickr getURLForString: searchString tags:tags]
                                  completionHandler:^(NSData *data,

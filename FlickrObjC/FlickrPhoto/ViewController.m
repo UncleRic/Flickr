@@ -6,7 +6,7 @@
 // -----------------------------------------------------------------------------------------------------------------------
 
 #import "ViewController.h"
-#import "SimpleFlickrAPI.h"
+#import "FlickrAPI.h"
 #import "ImageDownloader.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -26,7 +26,7 @@
 
 - (void)fetchFlickrPhotoWithSearchString:(NSString *)searchString {
     
-    SimpleFlickrAPI *flickr = [SimpleFlickrAPI new];
+    FlickrAPI *flickr = [FlickrAPI new];
     
     
     [[[NSURLSession sharedSession] dataTaskWithURL:[flickr getURLForString:@"Ric"]

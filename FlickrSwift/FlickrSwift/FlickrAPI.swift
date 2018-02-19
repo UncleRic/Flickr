@@ -1,4 +1,4 @@
-//  SimpleFlickrAPI.swift
+//  FlickrAPI.swift
 //  FlickrSwift
 //
 //  Created by Frederick C. Lee on 9/22/14.

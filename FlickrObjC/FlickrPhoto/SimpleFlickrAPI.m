@@ -1,11 +1,11 @@
-//  SimpleFlickrAPI.m
+//  FlickrAPI.m
 //  Session
 //
 //  Created by Frederick C. Lee on 9/13/14.
 //  Copyright (c) 2014 Frederick C. Lee. All rights reserved.
 // ------------------------------------------------------------------------------------
 
-#import "SimpleFlickrAPI.h"
+#import "FlickrAPI.h"
 #import <Foundation/NSJSONSerialization.h>                              // 1
 
 NSString const *flickrAPIKey = @"ebbefd0c0a07c996f7867f014778adf7";
@@ -55,7 +55,7 @@ NSString const *sharkAPIKey = @"949e98778755d1982f537d56236bbb42";
 
 // =======================================================================================================================
 
-@implementation SimpleFlickrAPI
+@implementation FlickrAPI
 
 
 - (NSURL *)getURLForString:(NSString *)str tags:(NSString *)tags {
@@ -106,7 +106,7 @@ NSString const *sharkAPIKey = @"949e98778755d1982f537d56236bbb42";
 
 // -----------------------------------------------------------------------------------------------------------------------
 // The method -stringByRemovingFlickrJavaScript: returns a cleaned-up version of the Flickr API response data.
-// The Flickr API wraps the response data in a JavaScript function, but the SimpleFlickrAPI wants only the JSON data.
+// The Flickr API wraps the response data in a JavaScript function, but the FlickrAPI wants only the JSON data.
 // Consequently, the response data is converted from an NSData object to an NSString object.
 // The JavaScript function is then stripped from the string, resulting in the string containing only the JSON-formatted data.
 
