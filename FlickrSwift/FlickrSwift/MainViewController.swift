@@ -128,7 +128,6 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for:indexPath)
         guard let photoImageView = cell.viewWithTag(1) as? UIImageView else {
-            print("*** WARNING: Unable to cast subview to UIImageView. ***")
             return cell
         }
         downloadItems[indexPath.item].itemID = indexPath.item
