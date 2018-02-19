@@ -43,7 +43,10 @@ class MainViewController: UIViewController {
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
         let refreshControlContainer = view.layoutMarginsGuide
         refreshControl.topAnchor.constraint(equalTo: refreshControlContainer.topAnchor, constant: 1.0).isActive = true
+        refreshControl.heightAnchor.constraint(equalToConstant: 300.0).isActive = true
+        
         refreshControl.leftAnchor.constraint(equalTo: refreshControlContainer.leftAnchor, constant: 1.0).isActive = true
+        refreshControl.rightAnchor.constraint(equalTo: refreshControlContainer.rightAnchor, constant: 1.0).isActive = true
         
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Refresh Data")
@@ -64,12 +67,13 @@ class MainViewController: UIViewController {
         
         // Positioning StackView within its container:
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        let stackViewContainer = refreshControl.layoutMarginsGuide
-        stackView.topAnchor.constraint(equalTo: stackViewContainer.topAnchor, constant: 1.0).isActive = true
+        let container = refreshControl.layoutMarginsGuide
+        stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: 1.0).isActive = true
         let width = refreshControl.bounds.size.width
-        stackView.leftAnchor.constraint(equalTo: stackViewContainer.leftAnchor, constant: width/2.0).isActive = true
+        stackView.leftAnchor.constraint(equalTo: container.leftAnchor, constant: width/2.0).isActive = true
         
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
     }
     
     
@@ -80,7 +84,6 @@ class MainViewController: UIViewController {
     
     // -----------------------------------------------------------------------------------------------------
     // MARK: - NSURLSesson
-    
     
     private func fetchFlickrPhoto(_ searchString:String, tags:String) {
         guard let url = getURLForString(searchString, tags: tags) else {
