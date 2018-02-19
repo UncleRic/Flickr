@@ -40,10 +40,12 @@ extension DetailViewController {
             let changeRequest = PHAssetChangeRequest.creationRequestForAsset(from: myImage)
             changeRequest.creationDate = Date()
         }) { (success, error) in
-            if success {
-                self.statusLabel.isHidden = false;
-            } else {
-                print(error.debugDescription)
+            DispatchQueue.main.async {
+                if success {
+                    self.statusLabel.isHidden = false;
+                } else {
+                    print(error.debugDescription)
+                }
             }
         }
     }
