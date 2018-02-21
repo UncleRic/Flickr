@@ -1,11 +1,9 @@
 FlickrSwift
 ===========
-
+<img src="https://farm5.staticflickr.com/4655/40375302381_730ca8ab03_m.jpg" alt="Shark" height="200" width="300">
+<p>
 This is the Swift version of Flickr, which was written in the classic Objective-C language.
 <p>
-
-<img src="https://farm5.staticflickr.com/4655/40375302381_730ca8ab03_m.jpg" alt="Shark" height="42" width="42">
-
 You'll notice that there are no header files. <br/>
 
 Swift uses 'let' objects for constant values; and
