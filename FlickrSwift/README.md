@@ -3,6 +3,8 @@ FlickrSwift
 
 This is the Swift version of Flickr, which was written in the classic Objective-C language.
 <p>
+![](https://farm5.staticflickr.com/4655/40375302381_730ca8ab03_m.jpg)
+
 You'll notice that there are no header files. <br/>
 
 Swift uses 'let' objects for constant values; and
@@ -12,6 +14,7 @@ Swift introduces closures vs Objective-C's blocks.
 <p>
 Swift doesn't have pragmas versus Objective-C.  
 Instead, I use the '// MARK:' directive and a class extension to organize the code.
+
 <br/>
 Swift has the class extension versus Objective-C's
 class category.
