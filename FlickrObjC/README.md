@@ -1,9 +1,9 @@
 Flickr
 ======
-
+![Shark](https://farm5.staticflickr.com/4655/40375302381_730ca8ab03_m.jpg)
+<p>
 Flickr is a popular on-line image repository.  This is a simple photo-access application.
 
-<b> Note: </b> This is a ***work-in-progress***. <br/>
 This code is written in Objective-C per Code Challenge.<br/>
 My <em>preference</em> is Swift 4.0.
 <p>
