@@ -6,8 +6,8 @@
 // -----------------------------------------------------------------------------------------------------
 import Foundation
 
-let flickrAPIKey = "ebbefd0c0a07c996f7867f014778adf7"    // ...'Consumer Key'
-let flickrAPISecret = "bf823c361bc6f09e"                 // ...'Consumer Secret'
+let flickrAPIKey = "ebbefd0c0a07c996f7867f014778adf7" // ...'Consumer Key'
+let flickrAPISecret = "bf823c361bc6f09e" // ...'Consumer Secret'
 
 let FKFlickrRESTAPI = "https://api.flickr.com/services/rest/"
 let flickrBaseURL = "https://api.flickr.com/services/rest/?format=json&"
@@ -32,7 +32,7 @@ let flickrParamText = "text"
 let flickrParamTag = "tags"
 
 // ------------------------------------------------------------------------------------
-//The Flickr API includes a parameter named method.
+// The Flickr API includes a parameter named method.
 // This parameter defines which API method is called.
 // The API methods supported by this simple wrapper are defined here as macros.
 
@@ -71,17 +71,17 @@ let flickrAccessToken = "https://www.flickr.com/services/oauth/access_token?"
 
 // Ref: https://www.flickr.com/services/api/auth.oauth.html
 
-//https://www.flickr.com/services/oauth/request_token
-//?oauth_nonce=89601180
-//&oauth_timestamp=1305583298
-//&oauth_consumer_key=653e7a6ecc1d528c516cc8f92cf98611
-//&oauth_signature_method=HMAC-SHA1
-//&oauth_version=1.0
-//&oauth_callback=http%3A%2F%2Fwww.example.com
+// https://www.flickr.com/services/oauth/request_token
+// ?oauth_nonce=89601180
+// &oauth_timestamp=1305583298
+// &oauth_consumer_key=653e7a6ecc1d528c516cc8f92cf98611
+// &oauth_signature_method=HMAC-SHA1
+// &oauth_version=1.0
+// &oauth_callback=http%3A%2F%2Fwww.example.com
 // ------------------------------------
 // Would have a base string that looks like the following:
 // Concatenate all:
-//GET&https%3A%2F%2Fwww.flickr.com %2F services%2Foauth %2F request_token
+// GET&https%3A%2F%2Fwww.flickr.com %2F services%2Foauth %2F request_token
 //  &oauth_callback%3Dhttp%253A%252F%252Fwww.example.com
 //  %26 oauth_nonce %3D95613465
 //  %26 oauth_consumer_key %3D 653e7a6ecc1d528c516cc8f92cf98611
@@ -90,7 +90,9 @@ let flickrAccessToken = "https://www.flickr.com/services/oauth/access_token?"
 //  %26 oauth_timestamp %3D 1305586162
 
 // =======================================================================================================================
+
 // MARK: - OAUTH
+
 let callbackKey = "oauth_callback"
 let consumerKey = "oauth_consumer_key"
 let nonceKey = "oauth_nonce"
@@ -98,23 +100,23 @@ let signatureKey = "oauth_signature_method"
 let oauthVersionKey = "oauth_version"
 let timeStampKey = "oauth_timestamp"
 
-var timeStamp:TimeInterval {
+var timeStamp: TimeInterval {
     let seconds: TimeInterval = Date().timeIntervalSince1970
     return seconds
 }
 
-var nonce:String {
+var nonce: String {
     let temp = UUID().uuidString
     let nonce = temp.replacingOccurrences(of: "-", with: "")
     return nonce as String
 }
 
-var callback:String {
+var callback: String {
     return "http://www.amourineTech.com/oauth/test"
 }
 
-public var oauthParameters:[String:String] {
-    var myDict = [timeStampKey:"\(timeStamp)"]
+public var oauthParameters: [String: String] {
+    var myDict = [timeStampKey: "\(timeStamp)"]
     myDict[nonceKey] = nonce
     myDict[callbackKey] = callback
     myDict[signatureKey] = "HMAC-SHA1"
@@ -134,56 +136,51 @@ public var oauthParameters:[String:String] {
 // -----------------------------------------------------------------------------------------------------
 
 class OAuth: NSObject {
-    
-    var oauthParameters:[String:String]
-    var SignatureSecret:String
-    
-    var accessToken:String? = nil
-    var tokenSecret: String? = nil
-    
-    init(consumerKey:String, consumerSecret:String, accessToken:String?, tokenSecret:String?){
-        
-        self.SignatureSecret = String()
-        self.oauthParameters = ["oauth_signature_method" : "SHA1"]
-        
-        if (self.accessToken != nil){
-            self.oauthParameters.updateValue(accessToken!, forKey: "oauth_token")
+    var oauthParameters: [String: String]
+    var SignatureSecret: String
+
+    var accessToken: String?
+    var tokenSecret: String?
+
+    init(consumerKey _: String, consumerSecret: String, accessToken: String?, tokenSecret: String?) {
+        SignatureSecret = String()
+        oauthParameters = ["oauth_signature_method": "SHA1"]
+
+        if self.accessToken != nil {
+            oauthParameters.updateValue(accessToken!, forKey: "oauth_token")
         }
-        
-        if (tokenSecret != nil){
-            self.SignatureSecret = "\(consumerSecret)&\(tokenSecret!)"
+
+        if tokenSecret != nil {
+            SignatureSecret = "\(consumerSecret)&\(tokenSecret!)"
         } else {
-            self.SignatureSecret = "\(consumerSecret)&"
+            SignatureSecret = "\(consumerSecret)&"
         }
-        
     }
 }
 
 // =======================================================================================================================
+
 // MARK: - Flickr Methods
 
-public func getURLForString(_ str:String, tags: String) -> URL? {
-    let parameters = [flickrParamMethod : flickrMethodSearchPhotos,
-                      flickrParamAppKey : flickrAPIKey,
-                      flickrParamTag : tags,
-                      flickrParamText : str, flickrParamExtras : "url_t, url_s, url_m, url_sq"]
-    
+public func getURLForString(_ str: String, tags: String) -> URL? {
+    let parameters = [flickrParamMethod: flickrMethodSearchPhotos,
+                      flickrParamAppKey: flickrAPIKey,
+                      flickrParamTag: tags,
+                      flickrParamText: str, flickrParamExtras: "url_t, url_s, url_m, url_sq"]
+
     return buildFlickrURLWith(flickrBaseURL, parameters: parameters)
 }
 
 // -----------------------------------------------------------------------------------------------------
 
-func buildFlickrURLWith(_ baseURL:String, parameters:Dictionary<String,String>) -> URL? {
+func buildFlickrURLWith(_ baseURL: String, parameters: [String: String]) -> URL? {
     var urlString = baseURL
-    for (key,value) in parameters {
+    for (key, value) in parameters {
         urlString += "\(key)=\(value)&"
     }
     if let urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-        let url = URL(string:urlString)
+        let url = URL(string: urlString)
         return url
     }
     return nil
 }
-
-
-

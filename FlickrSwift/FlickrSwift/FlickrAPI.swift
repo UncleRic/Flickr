@@ -27,8 +27,7 @@ let flickrBaseURL = "https://api.flickr.com/services/rest/?format=json&"
 // Instead of the Flickr API parameter names being hard-coded throughout, they are letd here as macros.
 // The Flickr API parameters are letd as query string parameters on the HTTP GET request.
 
-
-let flickrParamMethod = "method"                                     // 4
+let flickrParamMethod = "method" // 4
 let flickrParamAppKey = "api_key"
 let flickrParamUsername = "username"
 let flickrParamUserid = "user_id"
@@ -36,97 +35,92 @@ let flickrParamPhotoSetId = "photoset_id"
 let flickrParamExtras = "extras"
 let flickrParamText = "text"
 // ------------------------------------------------------------------------------------
-//The Flickr API includes a parameter named method.
+// The Flickr API includes a parameter named method.
 // This parameter lets which API method is called.
 // The API methods supported by this simple wrapper are letd here as macros.
 
-let flickrMethodFindByUsername = "flickr.people.findByUsername"      // 5
+let flickrMethodFindByUsername = "flickr.people.findByUsername" // 5
 let flickrMethodGetPhotoSetList = "flickr.photosets.getList"
 let flickrMethodGetPhotosWithPhotoSetId = "flickr.photosets.getPhotos"
 let flickrMethodSearchPhotos = "flickr.photos.search"
 
-
 // =======================================================================================================================
 
+func getURLForString(str: String) -> NSURL {
+    let parameters = [flickrParamMethod: flickrMethodSearchPhotos,
+                      flickrParamAppKey: flickrAPIKey,
+                      flickrParamText: str,
+                      flickrParamExtras: "url_t, url_s, url_m, url_sq"]
 
-func getURLForString(str:String) -> NSURL {
-    
-    let parameters = [flickrParamMethod : flickrMethodSearchPhotos,
-        flickrParamAppKey : flickrAPIKey,
-        flickrParamText : str,
-        flickrParamExtras : "url_t, url_s, url_m, url_sq"]
-    
     var url = buildFlickrURLWithParameters(parameters)
-    
-    return url;
-}  // ...end getURLForString
+
+    return url
+} // ...end getURLForString
 
 // -----------------------------------------------------------------------------------------------------
 
-func buildFlickrURLWithParameters(parameters:Dictionary<String,String>) -> NSURL {
+func buildFlickrURLWithParameters(parameters: [String: String]) -> NSURL {
     var urlString = flickrBaseURL
-    
+
     for key in parameters.keys {
         let value = parameters[key]?.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        urlString += key+"="+value!+"&"
+        urlString += key + "=" + value! + "&"
     }
-    
+
     return NSURL.URLWithString(urlString)
 }
 
 // -----------------------------------------------------------------------------------------------------
 
-func photosWithSearchString(str:String) -> Array<String> {
-    let parameters = [flickrParamMethod : flickrMethodSearchPhotos,
-                      flickrParamAppKey : flickrAPIKey,
-                        flickrParamText : str,
-                      flickrParamExtras : "url_t, url_s, url_m, url_sq"]
-    
-    let json:NSDictionary = flickrJSONSWithParameters(parameters)
-    
+func photosWithSearchString(str: String) -> [String] {
+    let parameters = [flickrParamMethod: flickrMethodSearchPhotos,
+                      flickrParamAppKey: flickrAPIKey,
+                      flickrParamText: str,
+                      flickrParamExtras: "url_t, url_s, url_m, url_sq"]
+
+    let json: NSDictionary = flickrJSONSWithParameters(parameters)
+
     let myArray = [String]()
     return myArray
 }
 
 // -----------------------------------------------------------------------------------------------------
 
-func flickrJSONSWithParameters(parameters:Dictionary<String,String>) -> NSDictionary {
-    let url:NSURL = buildFlickrURLWithParameters(parameters)
- 
-    let data:NSData = fetchResponseWithURL(url)
-    let string:NSString = stringByRemovingFlickrJavaScript(data)
-    let jasonData:NSData? = string.dataUsingEncoding(NSUTF8StringEncoding)
-    var error:NSError?
-    
-    let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as [NSDictionary:AnyObject]
-    
-   return json
-    
+func flickrJSONSWithParameters(parameters: [String: String]) -> NSDictionary {
+    let url: NSURL = buildFlickrURLWithParameters(parameters)
+
+    let data: NSData = fetchResponseWithURL(url)
+    let string: NSString = stringByRemovingFlickrJavaScript(data)
+    let jasonData: NSData? = string.dataUsingEncoding(NSUTF8StringEncoding)
+    var error: NSError?
+
+    let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as [NSDictionary: AnyObject]
+
+    return json
 }
 
 // -----------------------------------------------------------------------------------------------------
 
-func stringByRemovingFlickrJavaScript(data:NSData) -> NSString {
-
-    var string = NSMutableString(data:data, encoding:NSUTF8StringEncoding)
+func stringByRemovingFlickrJavaScript(data: NSData) -> NSString {
+    var string = NSMutableString(data: data, encoding: NSUTF8StringEncoding)
     let len = "jsonFlickrApi(".length
-    var range = NSMakeRange(0,len)
-    
+    var range = NSMakeRange(0, len)
+
     string.deleteCharactersInRange(range)
-    range = NSMakeRange((string.length - 1), 1)
+    range = NSMakeRange(string.length - 1, 1)
     string.deleteCharactersInRange(range)
-    
+
     return string
 }
 
 // -----------------------------------------------------------------------------------------------------
 
-func fetchResponseWithURL(url:NSURL) -> NSData {
-    let request:NSURLRequest = NSURLRequest(URL:url)
-    var response:NSURLResponse?
-    var error:NSError?
-    
-    let data = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)! as NSData;
-    
+func fetchResponseWithURL(url: NSURL) -> NSData {
+    let request: NSURLRequest = NSURLRequest(URL: url)
+    var response: NSURLResponse?
+    var error: NSError?
+
+    let data = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)! as NSData
+
     return data
 }
